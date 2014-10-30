@@ -1,0 +1,13 @@
+{
+  "name": "fry-reply",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "dependencies": {
+      "twit": "1.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
