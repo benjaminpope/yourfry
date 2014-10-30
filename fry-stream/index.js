@@ -12,6 +12,10 @@
     if (val == "reply") send_tweets = true;
   });
 
+  if (send_tweets) {
+    console.log("sending replies");
+  }
+
   var fry_stream = T.stream('statuses/filter', {track: ['stephen fry', 'steven fry', '@stephenfry']});
 
   fry_stream.on('tweet', function(tweet) {
@@ -25,14 +29,16 @@
 
  fry_stream.on('tweet', function(tweet) {
    var reply = '@' + tweet.user.screen_name + ' ' + fry_generator.tweet();
-   console.log("Sending reply: %s", reply);
    if (send_tweets) {
+     console.log("Sending reply: %s", reply);
      //var reply = '@' + tweet.user.screen_name + ' ' fry_generator.tweet();
      //console.log("Sending reply: %s", reply);
      T.post('statuses/update', {
        status: '@' + tweet.user.screen_name + ' ' + fry_generator.tweet(),
        in_reply_to_status_id: tweet.id
-     }, function() {});
+     }, function(err, data, response) {
+       if (err) console.log(err);
+     });
    }
  });
 
