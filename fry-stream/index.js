@@ -2,7 +2,7 @@
  * `node index.js reply` to send @ replies to people
  */
 (function() {
-  var Twit = require('Twit'),
+  var Twit = require('twit'),
     config = require('./config.js'),
     T = new Twit(config),
     send_tweets = false,
