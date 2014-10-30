@@ -8,7 +8,7 @@ Projects:
 
 	- text mining
 
-Website host: www.heroku.com
+Website host: www.heroku.com/Ur_Fry
 
-Twitter: @urfry
+Twitter: @Ur_Fry
 
