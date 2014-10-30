@@ -1,0 +1,14 @@
+This is the central repo for our yourfry work!
+
+Projects:
+
+	- Twitter bot
+
+	- multilayer website
+
+	- text mining
+
+Website host: www.heroku.com
+
+Twitter: @urfry
+
