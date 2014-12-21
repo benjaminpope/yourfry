@@ -1,29 +1,148 @@
 module.exports = (function() {
+ return {
+  tweet: function() {
+
+   var env = require('jsdom').env ;
+   //read in file
+	var data;
+   env({ file: "../data/total-fry.txt", 
+    done: function (errors, window) {
+
+	if (errors)
+		{console.log("Error: ",errors);}
+
+	var $ = require('jquery')(window);
+
+	//get data out of text file and put into array
+	data = $("body").text();
+	}});
+	
+	setInterval(function () {
+	if(data!=undefined){
+
+	//get rid of newlines, double spaces and quote marks
+	data = data.replace(/\n/g,' ');
+	data = data.replace(/  /g,' ');
+	data = data.replace(/\"/g,'');
+	data = data.replace(/\)/g,'');
+	data = data.replace(/\(/g,'');
+	// split into individual words
+	var words = data.split(" ");
+
+	//console.log(words);
+/*
+	//begin with two random consecutive words, the first of which is capitalised
+	var capital = 0;
+	var give_up = 0;
+	while (!capital)
+	{		
+		var index = Math.floor(Math.random()*words.length);
+		// check that the first letter is capitalised
+		if (words[index][0] == words[index][0].toUpperCase() && words[index].indexOf("\"") == -1)
+		{
+			capital = 1;
+		}	
+		give_up +=1;
+		if (give_up > 200)
+		{
+			break;
+		}
+	}
+*/
 
 
+	//begin with two random consecutive words, the second of which ends in punctuation
+	var end_of_sentence = 0;
+	var give_up = 0;
+	while (!end_of_sentence)
+	{		
+		var index = Math.floor(Math.random()*words.length);
+		// check for punctuation
+		if (words[index][words[index].length - 1] == '.')
+		{
+			end_of_sentence = 1;
+		}	
+		give_up +=1;
+		if (give_up > 200)
+		{
+			// just go with whatever word you ended up with
+			break;
+		}
+	}
 
-var tweets = [
-  "shallow since the high pastures or stand easily with a fizz and crackle of static. The doorbell rang again.",
-  "Oh shitey-shitey-shit-shit.",
-  "of this kind ought to have to confess this, moronic, puerile and cheap resonance of reality. So I did.",
-  "which Rowan handed to Adrian to forget his lines. We will bring you something.' 'Good-o,' said Adrian.",
-  "remember the first night of the lips, the angle of the people in the grip of what was the first floor.",
-  "utter despair.",
-  "fooling Cromie. He still needed to clear of me. I ought to be able to continue. ‘Well, go on,’ said Ignaz.",
-  "picture and priceless biographical information: ‘John hates marmalade but Ringo is very good friends.",
-  "and returned to his door and work without troubling myself too drastically for such was the first floor.",
-  "car, tea-ed at the Leisure Shirt was saying. I haven’t ever recalled him to try and forget that name.",
-  "the editor. I can’t explain. Until that moment, I made my way to describe his rise from the exercise.",
-  "returning to the Hungarians, but to be completed before dinner. Just two essential visits would . . .",
-  "pore over later with flushed cheeks and the idea of ‘abuse’, a word which still means much to reading.",
-  "his actions. Alone in my life between prep and public spaces which, even back then I would mind . . . .",
-  "Oh, you poor young donkey, is that too, but his legs and the unquestionably genuine sparkle in his room.",
-  "or sexual desire, or guilt, yet it still warms my heart beat faster and faster, wishing that the gun."
-];
 
-  return {
-    tweet: function() {
-      return tweets[Math.floor(Math.random() * tweets.length)];
+	answer = [words[index].slice(0,words[index].length-1), words[index-1]];
+
+	var checkindices = [index, index+1];
+
+	var lenout = 2;
+	give_up = 0;
+
+	// measure length of answer
+	var length_of_answer = 0;
+	for (var l = 0; l < answer.length; l++)
+	{
+		length_of_answer += answer[l].length;		
+	}
+	// add spaces to length count
+	length_of_answer += answer.length-1;
+
+	while (length_of_answer < 100)
+	{
+		// from the first two words, find all instances of the second one within the text>
+		var indices = new Array();
+		for (var i = 2; i < words.length; i++)
+		{
+
+			// check that the first word matches 
+			if (words[i] == answer[answer.length-2])
+			{
+				//console.log(words[i],words[i-1],answer[answer.length-2],answer[answer.length-1])
+				// check that the second word matches
+				if (words[i-1] == answer[answer.length-1])
+				{
+					indices.push(i-2);
+				}
+			}
+		}
+
+		// pick next word at random from pool of words
+		var newindex = Math.floor(Math.random()*indices.length);
+		var next_word = words[indices[newindex]];
+		//console.log(next_word,answer)
+		answer.push(next_word);
+
+		// also save the index
+		checkindices.push(indices[newindex]);
+		lenout +=1;
+		if (next_word)
+		{
+			length_of_answer += next_word.length + 1;
+		}
+		give_up +=1;
+		if (give_up >200)
+		{
+			break;
+		}
+	}
+	
+/*	var lastword = answer.slice(-1); 
+	var lastcharacter = lastword[0].slice(-1);
+	var appendedcharacter = '';
+
+	// End with punctuation
+	if (lastcharacter != '.' || lastcharacter != '?' || lastcharacter != '!')
+	{
+		appendedcharacter = '.';
+	}
+*/
+	answer = answer.reverse();
+	answer = (answer.join(" ")+'.');
+	return answer
+	data = undefined
+	}},100);
     }
   };
+
 })();
+
