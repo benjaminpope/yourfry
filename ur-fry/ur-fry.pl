@@ -49,7 +49,7 @@ helper read_headlines => sub {
     # turn them into an array of hash refs (one hash ref per tweet)
     return \@headlines;
 };
-
+app->log( Mojo::Log->new( path => 'log', level => 'debug' ) );
 app->start;
 
 
@@ -78,6 +78,10 @@ __DATA__
 		padding-top: 43px;
 		border: 2px solid black;
 		background: url('http://bethmcmillan.com/geek/yourfry/website/mac-small.png');
+	    }
+	    #twitter-widget-0 {
+		left: 50%;
+		position: absolute;
 	    }
         </style>
          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
