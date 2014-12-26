@@ -60,6 +60,9 @@ __DATA__
 <!DOCTYPE html>
 <html>
     <head>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
         <style media="screen" type="text/css">
             .tweet { 
                 position:absolute;
@@ -74,7 +77,7 @@ __DATA__
             .header { 
                 font-size: 150%;
             }
-	    .quiz {
+	    #quiz {
 		padding-top: 43px;
 		border: 2px solid black;
 		background: url('http://bethmcmillan.com/geek/yourfry/website/mac-small.png');
@@ -84,10 +87,16 @@ __DATA__
 		position: absolute;
 	    }
         </style>
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script>
+$(function() {
+$( ".tweet" ).draggable();
+$( "#quiz" ).draggable();
+});
+</script>
         <title>ur-fry</title>
     </head>
     <body>
+	<img src="http://www.bethmcmillan.com/geek/yourfry/website/painttecfry.png" id="face">
         % for my $tweet (@{$tweets}) {
         % my $twidth = 300;
         % my $theight = 400;
@@ -105,7 +114,7 @@ __DATA__
 
         % my $xpos = rand(1024);
         % my $ypos = rand(800);
-        <iframe class="quiz" style="position: absolute; left: <%={$xpos}%>px; top: <%=${ypos}%>px;" width="600" height="450" src="http://www.onlineassessmenttool.com/what-fry-r-u/assessment-12306" frameborder="0" allowfullscreen></iframe>
+        <iframe id="quiz" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;" width="600" height="450" src="http://www.onlineassessmenttool.com/what-fry-r-u/assessment-12306" frameborder="0" allowfullscreen></iframe>
 
 	            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Ur_Fry" data-widget-id="546772321080737792">Tweets by @Ur_Fry</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
