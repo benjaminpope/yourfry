@@ -116,8 +116,6 @@ $( "#quiz" ).draggable();
         % my $ypos = rand(800);
         <iframe id="quiz" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;" width="600" height="450" src="http://www.onlineassessmenttool.com/what-fry-r-u/assessment-12306" frameborder="0" allowfullscreen></iframe>
 
-	            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Ur_Fry" data-widget-id="546772321080737792">Tweets by @Ur_Fry</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           
 
     </body>
