@@ -60,9 +60,14 @@ __DATA__
 <!DOCTYPE html>
 <html>
     <head>
+<meta charset="utf-8">
+
  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script src="http://www.bethmcmillan.com/geek/yourfry/cloud/lib/d3/d3.js"></script>
+<script src="http://www.bethmcmillan.com/geek/yourfry/cloud/d3.layout.cloud.js"></script>
+
         <style media="screen" type="text/css">
             .tweet { 
                 position:absolute;
@@ -73,6 +78,18 @@ __DATA__
 		font-size: 0.7em;
 		padding: 10px;
 		padding-top: 60px;
+		z-index: 0;
+            }
+            .cloud { 
+                position:absolute;
+                width: 408px;
+                background:#ffffff url('http://bethmcmillan.com/geek/yourfry/website/browser2-light.png');
+		color: #999999;
+		border: 1px solid #999999;
+		font-size: 0.7em;
+		padding: 10px;
+		padding-top: 60px;
+		z-index: 2;
             }
             .header { 
                 font-size: 150%;
@@ -81,28 +98,27 @@ __DATA__
 		padding-top: 43px;
 		border: 2px solid black;
 		background: url('http://bethmcmillan.com/geek/yourfry/website/mac-small.png');
-	    }
-	    #twitter-widget-0 {
-		left: 50%;
-		position: absolute;
+		z-index: 2;
 	    }
         </style>
  <script>
 $(function() {
 $( ".tweet" ).draggable();
 $( "#quiz" ).draggable();
+$( "#face" ).draggable();
+$(".cloud").draggable();
 });
 </script>
         <title>ur-fry</title>
     </head>
     <body>
-	<img src="http://www.bethmcmillan.com/geek/yourfry/website/painttecfry.png" id="face">
+	<img src="http://www.bethmcmillan.com/geek/yourfry/website/painttecfry.png" id="face" alt="Stephen Fry's face">
         % for my $tweet (@{$tweets}) {
         % my $twidth = 300;
         % my $theight = 400;
         % my $xpos = rand(1024);
         % my $ypos = rand(3000);
-        <div class="tweet" style="left: <%=${xpos}%>px; top: <%=${ypos}%>px;">
+        <div class="tweet" style="left: <%=${xpos}%>px; top: <%=${ypos}%>px;" >
             <div class="header">
                 %= $tweet->{user}->{screen_name}
             </div>
@@ -114,7 +130,34 @@ $( "#quiz" ).draggable();
 
         % my $xpos = rand(1024);
         % my $ypos = rand(800);
-        <iframe id="quiz" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;" width="600" height="450" src="http://www.onlineassessmenttool.com/what-fry-r-u/assessment-12306" frameborder="0" allowfullscreen></iframe>
+        <iframe id="quiz" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;" width="600" height="450" src="http://www.onlineassessmenttool.com/what-fry-r-u/assessment-12306" allowfullscreen></iframe>
+
+        % my $xpos = rand(1024);
+        % my $ypos = rand(800)+800;
+
+<div id="cloud0" class="cloud" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;">
+</div>
+
+        % my $xpos = rand(1024);
+        % my $ypos = rand(800)+1200;
+
+<div id="cloud1" class="cloud" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;">
+</div>
+
+        % my $xpos = rand(1024);
+        % my $ypos = rand(800)+1600;
+
+<div id="cloud2" class="cloud" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;">
+</div>
+
+        % my $xpos = rand(1024);
+        % my $ypos = rand(800)+2200;
+
+
+<div id="cloud3" class="cloud" style="position: absolute; left: <%=${xpos}%>px; top: <%=${ypos}%>px;">
+</div>
+
+<script src="http://www.bethmcmillan.com/geek/yourfry/ur-fry/cloud.js"></script>
 
           
 
