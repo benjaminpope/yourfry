@@ -156,7 +156,7 @@ $(".headline").draggable();
         -ms-transform: rotate(<%= $rot %>deg); /* IE 9 */
         -webkit-transform: rotate(<%= $rot %>deg); /* Chrome, Safari, Opera */
         transform: rotate(<%= $rot %>deg);" >
-        <a href="<%= $url %>"> <%= $headline %> </a>
+        <a href="<%= $url %>" target="_blank"> <%= $headline %> </a>
     </div>
     % }
 
