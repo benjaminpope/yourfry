@@ -118,7 +118,7 @@ $(".cloud").draggable();
         % my $theight = 400;
         % my $xpos = rand(1024);
         % my $ypos = rand(3000);
-        <div class="tweet" style="left: <%=${xpos}%>px; top: <%=${ypos}%>px;" >
+        <div class="tweet" id=<%= $tweet->{id} %> style="left: <%=${xpos}%>px; top: <%=${ypos}%>px;" >
             <div class="header">
                 %= $tweet->{user}->{screen_name}
             </div>
